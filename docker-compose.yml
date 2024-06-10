@@ -1,0 +1,31 @@
+services:
+  
+  server:
+    image: docker.io/drone/drone:2
+    restart: always
+    ports:
+      - 80:80
+      - 443:443
+    environment:
+      - DRONE_SERVER_HOST=localhost
+      - DRONE_SERVER_PROTO=http
+      - DRONE_RPC_SECRET=464ee256fb4b7306b82cd0149ba3f24c
+      - DRONE_GITLAB_SERVER=https://gitlab.com
+      - DRONE_GITLAB_CLIENT_ID=18dde910f6d9e6350dd7b8ccaa9e7812ed282507757bd4c1f89dd943a430e8a6
+      - DRONE_GITLAB_CLIENT_SECRET=gloas-445490825646fb23087960f51a903286f0fdd13b6a54042a80630c80466d84dc
+    volumes:
+      - ./data:/var/lib/drone
+
+  agent:
+    image: docker.io/drone/drone-runner-docker:1
+    restart: always
+    depends_on:
+      - server
+    ports:
+      - 3000:3000
+    environment:
+      - DRONE_RPC_HOST=server
+      - DRONE_RPC_PROTO=http
+      - DRONE_RPC_SECRET=464ee256fb4b7306b82cd0149ba3f24c
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock

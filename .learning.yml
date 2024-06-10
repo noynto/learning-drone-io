@@ -1,0 +1,10 @@
+kind: pipeline
+type: docker
+name: default
+
+steps:
+  - name: welcome
+    image: alpine
+    command:
+      - echo "Hello World !"
+      - echo "How are you today ?"
