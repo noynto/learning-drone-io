@@ -1,4 +1,4 @@
-# Learning - Drone IO
+# Learning - Drone.io
 
 ## Purpose
 This project has a type called **Learning**, those projects are made for learning purposes, and can be used for a blog post or tutorial.
