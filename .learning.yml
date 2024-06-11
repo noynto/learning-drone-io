@@ -5,6 +5,6 @@ name: default
 steps:
   - name: welcome
     image: alpine
-    command:
+    commands:
       - echo Hello_World_!
       - echo How_are_you_today_?
